@@ -42,15 +42,9 @@ Vardhaman College of Engineering
 
 
 
-\## 🚀 Live Demo
+## 🚀 Live Demo
 
-
-
-\*(Add your deployed link here after deployment)\*
-
-
-
-```
+https://house-price-ai-predictor.streamlit.app
 
 https://house-price-ai.streamlit.app
 
@@ -168,7 +162,7 @@ R² Score ≈ 0.65
 
 ```
 
-house-price-prediction
+Smart-House-Price-Predictor
 
 │
 
@@ -214,7 +208,7 @@ Clone the repository:
 
 ```
 
-git clone https://github.com/YOURUSERNAME/house-price-ai.git
+git clone https://github.com/Dinesh-Reddy254/Smart-House-Price-Predictor.git
 
 ```
 
