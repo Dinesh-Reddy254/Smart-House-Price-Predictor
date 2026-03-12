@@ -60,7 +60,7 @@ st.markdown("""
 # ---------------------------------------------------------
 # LOAD MODEL
 # ---------------------------------------------------------
-model = pickle.load(open("../model/house_price_model.pkl","rb"))
+model = pickle.load(open("model/house_price_model.pkl","rb"))
 
 # ---------------------------------------------------------
 # SIDEBAR INPUTS
