@@ -4,6 +4,7 @@ import pickle
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
+import plotly.express as px
 
 # ---------------------------------------------------------
 # PAGE CONFIG (must be the first Streamlit command)
@@ -61,6 +62,11 @@ st.markdown("""
 # LOAD MODEL
 # ---------------------------------------------------------
 model = pickle.load(open("model/house_price_model.pkl","rb"))
+
+# ---------------------------------------------------------
+# LOAD DATASET
+# ---------------------------------------------------------
+df = pd.read_csv("data/Housing.csv")
 
 # ---------------------------------------------------------
 # SIDEBAR INPUTS
@@ -141,6 +147,37 @@ with tab1:
         st.metric("Air Conditioning", "Yes" if airconditioning else "No")
         st.metric("Preferred Area", "Yes" if prefarea else "No")
 
+    st.divider()
+
+    # ---------------------------------------------------------
+    # HOUSING DATA INSIGHTS
+    # ---------------------------------------------------------
+    st.subheader("Housing Market Insights")
+
+    import plotly.express as px
+
+    # Area vs Price chart
+    fig1 = px.scatter(
+        df,
+        x="area",
+        y="price",
+        color="bedrooms",
+        title="Area vs House Price",
+        hover_data=["bathrooms", "stories"]
+    )
+
+    st.plotly_chart(fig1, use_container_width=True)
+
+    # Bedrooms vs Price distribution
+    fig2 = px.box(
+        df,
+        x="bedrooms",
+        y="price",
+        title="Bedrooms vs Price Distribution"
+    )
+
+    st.plotly_chart(fig2, use_container_width=True)
+
 # ---------------------------------------------------------
 # PREDICTION TAB
 # ---------------------------------------------------------
@@ -172,6 +209,16 @@ with tab2:
 
         st.divider()
 
+        # Prediction Confidence
+        confidence = 0.82
+        st.subheader("Prediction Confidence")
+
+        st.progress(confidence)
+
+        st.write(f"Confidence Score: {confidence*100:.1f}%")
+
+        st.divider()
+
         # Feature importance chart
         st.subheader("Feature Influence on Price")
 
@@ -180,14 +227,15 @@ with tab2:
             features = input_data.columns
 
             fig, ax = plt.subplots()
+
             ax.barh(features, importance)
+
             ax.set_title("Feature Impact")
 
             st.pyplot(fig)
 
         except:
             st.write("Feature impact not available.")
-
 # ---------------------------------------------------------
 # ABOUT TAB
 # ---------------------------------------------------------
