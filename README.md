@@ -46,7 +46,6 @@ Vardhaman College of Engineering
 
 https://house-price-ai-predictor.streamlit.app
 
-https://house-price-ai.streamlit.app
 
 ```
 
